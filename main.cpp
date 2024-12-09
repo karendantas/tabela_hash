@@ -1,5 +1,5 @@
 #include <iostream>
-#define TAM = 21;
+#define TAM 21
 using namespace std;
 
 
@@ -9,27 +9,27 @@ class Node{
      int data;
      Node* next;
      Node(int d):data(d){}
-}
+};
 
 class LinkedList{
   public:
     Node* head;
     int tam;
-}
+};
 
 void initializaLinkedList(LinkedList* l){
   l->head = NULL;
   l->tam = 0;
-}
+};
 
 void insertLinkedList(LinkedList* list, int data){
     Node* newNode = new Node(data);
 
     newNode->next = list->head;
     list->head = newNode;
-    l->tam++;
+    list->tam++;
 
-}
+};
 
 int searchLinkedList(LinkedList* list, int value){
   Node* temp = list->head;
@@ -42,7 +42,7 @@ int searchLinkedList(LinkedList* list, int value){
   }
   return 0;
 
-}
+};
 
 int printLinkedList(LinkedList* list){
   Node* temp = list->head;
@@ -50,36 +50,36 @@ int printLinkedList(LinkedList* list){
     cout<<temp->data<<" ";
     temp = temp->next;
   }
-}
+};
 
 void initialize_hash(LinkedList t[]){
   for (int i = 0; i < TAM; i++){
     initializaLinkedList(&t[i]);
   }
-}
+};
 
-int hash(int value){
+int func_hash(int value){
   return value % TAM;
-}
+};
 
 void insert_hash(LinkedList t[], int value){
-    int id = hash(value);
-    for (int i = 0; i < TAM; i++){
-      insertLinkedList(&t[i], value);
-    }
-}
+    int id = func_hash(value);
+    insertLinkedList(&t[id], value);
+
+};
 
 int search_hash(LinkedList t[], int value){
-  int id = hash(value);
+  int id = func_hash(value);
   return searchLinkedList(&t[id], value);
-}
+};
 
 void print_hash(LinkedList t[]){
   for ( int i = 0; i < TAM; i++){
     cout << i << "=";
-    printLinkedList(t[i]);
+    printLinkedList(&t[i]);
+    cout << endl;
   }
-}
+};
 int main() {
    //testando com uma tabela de 10 elementos
    //tamanho = 2 * 10 (primo mais prximo) = 21
@@ -93,4 +93,4 @@ int main() {
    print_hash(tabela);
 
   return 0;
-}
+};
